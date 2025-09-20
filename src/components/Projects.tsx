@@ -76,16 +76,25 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-secondary/30">
+    <section id="projects" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl" />
+      
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Featured Projects
+          <div className="inline-block mb-4">
+            <span className="text-sm font-medium text-blue-600 tracking-wider uppercase mb-2 block">
+              Portfolio Showcase
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4">
+            Featured Projects & Innovations
           </h2>
-          <div className="w-20 h-1 bg-gradient-primary rounded-full mx-auto mb-6" />
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Explore my latest projects showcasing modern web and mobile development 
-            with cutting-edge technologies and user-centered design.
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-6" />
+          <p className="text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed">
+            Explore my latest projects showcasing <span className="font-semibold text-blue-600">modern web and mobile development</span> 
+            with <span className="font-semibold text-purple-600">cutting-edge technologies</span> and user-centered design principles.
           </p>
         </div>
 
@@ -93,33 +102,30 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card 
               key={project.id} 
-              className="group overflow-hidden border-0 shadow-soft hover:shadow-large transition-all duration-500 hover:-translate-y-2 card-gradient"
+              className="group overflow-hidden border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 bg-white/80 backdrop-blur-sm rounded-2xl"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project Image */}
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden rounded-t-2xl">
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Category Badge */}
-                <Badge 
-                  variant="secondary" 
-                  className="absolute top-4 left-4 bg-white/90 text-primary"
-                >
+                <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs font-semibold rounded-full shadow-lg backdrop-blur-sm border border-white/20">
                   {project.category}
-                </Badge>
+                </div>
 
                 {/* Hover Actions */}
-                <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <Button
-                    variant="secondary"
+                    variant="default"
                     size="sm"
                     asChild
-                    className="bg-white/90 hover:bg-white"
+                    className="bg-white/90 hover:bg-white text-slate-800 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4 mr-2" />
@@ -127,9 +133,10 @@ const Projects = () => {
                     </a>
                   </Button>
                   <Button
-                    variant="gradient"
+                    variant="default"
                     size="sm"
                     asChild
+                    className="bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
                   >
                     <a href={project.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -141,34 +148,33 @@ const Projects = () => {
 
               {/* Project Content */}
               <div className="p-6 space-y-4">
-                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-200">
+                <h3 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-blue-800 bg-clip-text text-transparent group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300">
                   {project.title}
                 </h3>
                 
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-slate-600 leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 pt-2">
                   {project.technologies.map((tech, techIndex) => (
-                    <Badge 
+                    <span 
                       key={techIndex}
-                      variant="outline" 
-                      className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                      className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-blue-50 to-purple-50 text-slate-700 rounded-full border border-blue-200/50 hover:from-blue-100 hover:to-purple-100 transition-all duration-200"
                     >
                       {tech}
-                    </Badge>
+                    </span>
                   ))}
                 </div>
 
                 {/* Project Links */}
-                <div className="flex gap-3 pt-2">
+                <div className="flex gap-3 pt-4">
                   <Button
                     variant="outline"
                     size="sm"
                     asChild
-                    className="flex-1"
+                    className="flex-1 border-slate-300 text-slate-700 hover:bg-slate-50 hover:border-slate-400 transition-all duration-300"
                   >
                     <a href={project.github} target="_blank" rel="noopener noreferrer">
                       <Github className="w-4 h-4 mr-2" />
@@ -179,7 +185,7 @@ const Projects = () => {
                     variant="default"
                     size="sm"
                     asChild
-                    className="flex-1"
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
                   >
                     <a href={project.live} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="w-4 h-4 mr-2" />
@@ -193,20 +199,20 @@ const Projects = () => {
         </div>
 
         {/* View More Projects */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Button
-            variant="outline"
+            variant="default"
             size="lg"
             asChild
-            className="group"
+            className="group bg-gradient-to-r from-slate-800 to-blue-800 hover:from-blue-600 hover:to-purple-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
           >
             <a 
               href="https://github.com/jeevanadhithya" 
               target="_blank" 
               rel="noopener noreferrer"
             >
-              <Github className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-              View All Projects on GitHub
+              <Github className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              Explore All Projects on GitHub
             </a>
           </Button>
         </div>

@@ -45,16 +45,26 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-background">
+    <section id="skills" className="py-20 bg-gradient-to-br from-white via-slate-50 to-blue-50/30 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-20 right-0 w-80 h-80 bg-gradient-to-l from-blue-400/10 to-purple-400/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl" />
+      
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Skills & Expertise
+          <div className="inline-block mb-4">
+            <span className="text-sm font-medium text-blue-600 tracking-wider uppercase mb-2 block">
+              Technical Proficiency
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-4">
+            Skills & Technologies
           </h2>
-          <div className="w-20 h-1 bg-gradient-primary rounded-full mx-auto mb-6" />
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A comprehensive overview of my technical skills and the tools I use to create 
-            exceptional digital experiences.
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-6" />
+          <p className="text-xl text-slate-700 max-w-2xl mx-auto leading-relaxed">
+            A comprehensive overview of my technical expertise and the cutting-edge tools I leverage to create 
+            <span className="font-semibold text-blue-600"> exceptional digital experiences</span> and 
+            <span className="font-semibold text-purple-600"> innovative solutions</span>.
           </p>
         </div>
 
@@ -62,9 +72,104 @@ const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <Card 
               key={categoryIndex} 
-              className="p-8 card-gradient border-0 shadow-soft hover:shadow-medium transition-all duration-300"
+              className="p-8 bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group rounded-2xl"
             >
-              <h3 className="text-2xl font-bold text-foreground mb-6">
+              <div className="flex items-center mb-6">
+                <div className="w-3 h-8 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full mr-4" />
+                <h3 className="text-2xl font-bold bg-gradient-to-r from-slate-800 to-blue-800 bg-clip-text text-transparent">
+                  {category.title}
+                </h3>
+              </div>
+              
+              <div className="space-y-6">
+                {category.skills.map((skill, skillIndex) => (
+                  <div key={skillIndex} className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold text-slate-800 text-lg">
+                        {skill.name}
+                      </span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-12 h-6 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">{skill.level}%</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="relative w-full bg-slate-200 rounded-full h-3 overflow-hidden shadow-inner">
+                      <div
+                        className={`h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden`}
+                        style={{ 
+                          width: `${skill.level}%`,
+                          background: `linear-gradient(90deg, ${skill.color}, ${skill.color}dd)`,
+                          animation: `slideIn 1s ease-out ${skillIndex * 0.1}s both`
+                        }}
+                      >
+                        {/* Animated shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Technologies showcase */}
+        <div className="mt-20">
+          <h3 className="text-3xl font-bold text-center bg-gradient-to-r from-slate-800 to-blue-800 bg-clip-text text-transparent mb-4">
+            Technologies I Work With
+          </h3>
+          <p className="text-center text-slate-600 mb-12 max-w-2xl mx-auto">
+            A curated selection of modern tools and frameworks that power my development workflow
+          </p>
+          
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              { name: 'React', color: 'from-blue-500 to-cyan-500' },
+              { name: 'Flutter', color: 'from-blue-400 to-blue-600' },
+              { name: 'JavaScript', color: 'from-yellow-400 to-orange-500' },
+              { name: 'TypeScript', color: 'from-blue-600 to-blue-800' },
+              { name: 'HTML5', color: 'from-orange-500 to-red-500' },
+              { name: 'CSS3', color: 'from-blue-500 to-purple-500' },
+              { name: 'Tailwind CSS', color: 'from-cyan-400 to-blue-500' },
+              { name: '.NET', color: 'from-purple-600 to-indigo-600' },
+              { name: 'Java', color: 'from-red-500 to-orange-600' },
+              { name: 'Rust', color: 'from-orange-600 to-red-700' },
+              { name: 'AI/ML', color: 'from-green-500 to-emerald-600' },
+              { name: 'Python', color: 'from-yellow-500 to-green-500' },
+              { name: 'UI/UX Design', color: 'from-pink-500 to-purple-500' },
+              { name: 'Figma', color: 'from-purple-500 to-pink-500' }
+            ].map((tech, index) => (
+              <div 
+                key={index}
+                className={`px-6 py-3 rounded-full bg-gradient-to-r ${tech.color} text-white font-semibold text-sm shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-default border border-white/20 backdrop-blur-sm`}
+              >
+                {tech.name}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Skills visualization */}
+        <div className="mt-20 text-center">
+          <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full shadow-2xl mb-8 relative">
+            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">2+</span>
+            </div>
+            <div className="absolute inset-0 rounded-full animate-ping bg-gradient-to-r from-blue-400/20 to-purple-400/20" />
+          </div>
+          <h4 className="text-2xl font-bold text-slate-800 mb-2">Years of Experience</h4>
+          <p className="text-slate-600 max-w-md mx-auto">
+            Continuously learning and evolving with the latest technologies to deliver cutting-edge solutions
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Skills;
                 {category.title}
               </h3>
               

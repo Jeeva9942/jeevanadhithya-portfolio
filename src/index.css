@@ -207,6 +207,24 @@
   }
 }
 
+@keyframes slideIn {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--target-width);
+  }
+}
+
+/* Animation delays */
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
 /* Responsive design improvements */
 @media (max-width: 768px) {
   .hero-gradient {
