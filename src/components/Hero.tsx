@@ -1,158 +1,214 @@
-import { ArrowDown, Download, ExternalLink } from 'lucide-react';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowDown, Github, Linkedin, MessageCircle, Zap, Sparkles, ArrowUpRight, Trophy, Code2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-const heroImage = '/src/assets/WhatsApp Image 2025-09-15 at 17.06.36_fc3eaa50.jpg';
+import { useTheme } from 'next-themes';
+import gsap from 'gsap';
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { loadFull } from "tsparticles";
+import ThreeSphere from './ThreeSphere';
 
 const Hero = () => {
-  const scrollToProjects = () => {
-    const element = document.querySelector('#projects');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const [init, setInit] = useState(false);
+  const { theme } = useTheme();
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  const heroImage = '/src/assets/media__1773835969101.jpg';
+
+  useEffect(() => {
+    setMounted(true);
+    initParticlesEngine(async (engine) => {
+      await loadFull(engine);
+    }).then(() => {
+      setInit(true);
+    });
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const scrollToContact = () => {
-    const element = document.querySelector('#contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  if (!mounted) return null;
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/30 to-pink-900/20" />
+    <section 
+      id="home" 
+      ref={heroRef} 
+      className={`min-h-screen flex items-center justify-center relative overflow-hidden transition-all duration-1000 ${theme === 'dark' ? 'dark-bg' : 'light-bg'}`}
+    >
+      <div className="absolute inset-0 z-0 pointer-events-none select-none">
+        <ThreeSphere theme={theme || 'light'} />
+      </div>
       
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-spin-slow" />
-      
-      <div className="container mx-auto px-6 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="text-center lg:text-left space-y-8 fade-in">
-            <div className="space-y-4">
-              <div className="inline-block">
-                <span className="text-sm md:text-base font-medium text-blue-300 tracking-wider uppercase mb-2 block">
-                  Welcome to my digital world
-                </span>
+      {init && (
+        <Particles
+          id="tsparticles"
+          className="absolute inset-0 z-[1] pointer-events-none opacity-30"
+          options={{
+            fullScreen: { enable: false },
+            background: { color: "transparent" },
+            fpsLimit: 120,
+            particles: {
+              color: { value: theme === 'dark' ? "#ffffff" : "#4f46e5" },
+              links: { color: theme === 'dark' ? "#ffffff" : "#4f46e5", distance: 150, enable: true, opacity: 0.05, width: 1 },
+              move: { enable: true, speed: 0.6 },
+              number: { value: 30, density: { enable: true, area: 800 } },
+              opacity: { value: 0.1 },
+              shape: { type: "circle" },
+              size: { value: { min: 1, max: 2 } },
+            },
+          } as any}
+        />
+      )}
+
+      <div className="container mx-auto px-6 relative z-50 max-w-7xl pt-32 pb-24">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          {/* Content Left */}
+          <div className="space-y-8 lg:pl-4 relative text-left">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="inline-flex items-center space-x-2 px-6 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 backdrop-blur-md"
+            >
+              <Zap className="w-3 h-3 text-blue-500 fill-blue-500" />
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-500">
+                Crafting Elite AI Solutions
+              </span>
+            </motion.div>
+
+            <div className="space-y-1">
+              <div className="overflow-visible">
+                <motion.h1 
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
+                >
+                  Jeevan
+                </motion.h1>
               </div>
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
-                  Creative
-                </span>
-                <br />
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Full-Stack Developer
-                </span>
-                <br />
-                <span className="text-gradient bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  + AI Expert
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Crafting innovative digital experiences that blend 
-                <span className="text-blue-300 font-semibold"> cutting-edge technology</span> with 
-                <span className="text-purple-300 font-semibold"> creative design</span> and 
-                <span className="text-pink-300 font-semibold"> AI intelligence</span>.
-              </p>
-              <p className="text-lg text-slate-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-                Based in <span className="text-blue-300 font-medium">Coimbatore, Tamil Nadu</span>. 
-                Transforming complex problems into elegant solutions through modern web technologies, 
-                intuitive user experiences, and intelligent automation.
-              </p>
+              <div className="overflow-visible">
+                <motion.h1 
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                  className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none gradient-text"
+                >
+                  Adhithya
+                </motion.h1>
+              </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start pt-4">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className={`text-lg sm:text-lg max-w-lg leading-relaxed font-semibold ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}
+            >
+              Transforming complex visions into <span className={theme === 'dark' ? 'text-white' : 'text-blue-600 font-bold'}>state-of-the-art</span> digital ecosystems. I bridge the gap between <span className="text-blue-500 font-black">advanced AI</span> and seamless human experience.
+            </motion.p>
+
+            {/* Micro Stats for "Attractive Content" */}
+            <motion.div 
+               initial={{ opacity: 0, scale: 0.9 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 0.6, delay: 0.5 }}
+               className="flex items-center space-x-12 py-4"
+            >
+              <div className="flex flex-col">
+                <span className={`text-2xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>3+</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Years Exp.</span>
+              </div>
+              <div className="flex flex-col">
+                <span className={`text-2xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>50+</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Projects Done</span>
+              </div>
+              <div className="flex flex-col">
+                <span className={`text-2xl font-black ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>100%</span>
+                <span className="text-[10px] uppercase tracking-widest font-bold text-slate-500">Success Rate</span>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="flex flex-wrap gap-5"
+            >
               <Button
-                variant="default"
-                size="xl"
-                onClick={scrollToProjects}
-                className="group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300"
+                onClick={() => scrollToSection('#projects')}
+                className={`h-14 px-10 rounded-xl font-black text-xs uppercase tracking-widest transition-all shadow-xl lg:w-auto w-full group ${
+                  theme === 'dark' ? 'bg-white text-slate-950 hover:bg-white/90' : 'bg-slate-950 text-white hover:bg-slate-800'
+                }`}
               >
-                <span className="relative z-10">Explore My Work</span>
-                <ArrowDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform duration-300" />
+                View Architectures
+                <Code2 className="ml-2 h-4 w-4 group-hover:rotate-12 transition-transform" />
               </Button>
               <Button
                 variant="outline"
-                size="xl"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm shadow-xl hover:shadow-white/10 transform hover:scale-105 transition-all duration-300"
-                onClick={scrollToContact}
+                onClick={() => scrollToSection('#contact')}
+                className={`h-14 px-10 rounded-xl font-black text-xs uppercase tracking-widest border-2 transition-all lg:w-auto w-full ${
+                  theme === 'dark' 
+                    ? 'border-white/20 hover:bg-white/5 text-white' 
+                    : 'border-slate-200 hover:bg-slate-50 text-slate-900'
+                }`}
               >
-                <span className="relative z-10">Let's Connect</span>
-                <ExternalLink className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
+                Initiate Chat
+                <MessageCircle className="ml-2 h-4 w-4" />
               </Button>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex gap-6 justify-center lg:justify-start pt-8">
-              <a
-                href="https://github.com/Jeeva9942"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-white/20"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/jeevan-adhithya-m-264202360"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-white/10 backdrop-blur-sm text-white/80 hover:text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-white/20"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-            </div>
+            </motion.div>
           </div>
 
-          {/* Hero Image */}
-          <div className="flex justify-center lg:justify-end slide-up">
-            <div className="relative">
-              {/* Enhanced decorative elements */}
-              <div className="absolute -inset-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-3xl opacity-30 animate-pulse blur-xl" />
-              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-3xl opacity-20 animate-pulse" />
-              <div className="absolute -inset-2 bg-gradient-to-r from-white/20 to-blue-200/20 rounded-3xl opacity-40" />
-              
-              {/* Main image */}
-              <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-3xl overflow-hidden border-2 border-white/30 shadow-2xl backdrop-blur-sm bg-white/5">
+          {/* Hero Image Right */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative flex items-center justify-center lg:justify-end"
+          >
+            <div className={`relative w-full max-w-[440px] aspect-[4/5] rounded-[4rem] p-4 backdrop-blur-2xl shadow-2xl transition-all duration-700 ${
+              theme === 'dark' ? 'bg-white/5 border border-white/10' : 'bg-white/40 border border-slate-200'
+            }`}>
+              <div className="w-full h-full rounded-[3.5rem] overflow-hidden shadow-2xl relative">
                 <img
                   src={heroImage}
-                  alt="Jeevan Adhithya - Web & App Developer"
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  alt="Jeevan Adhithya"
+                  className="w-full h-full object-cover select-none pointer-events-none hover:scale-105 transition-transform duration-1000"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?fit=crop&w=480&h=600';
+                  }}
                 />
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent" />
               </div>
-              
-              {/* Floating elements */}
-              <div className="absolute -top-6 -right-6 bg-gradient-to-r from-blue-500/90 to-purple-500/90 backdrop-blur-sm rounded-2xl px-6 py-3 border border-white/30 shadow-xl animate-bounce">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-2xl animate-pulse" />
-                <span className="text-white font-semibold">I AM</span>
-                <br />
-                <span className="text-blue-200">Jeevan Adhithya</span>
-              </div>
+
+              {/* Floating Badge */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.2 }}
+                className={`absolute -top-6 -right-6 px-6 py-4 rounded-3xl shadow-2xl flex items-center gap-4 border min-w-[220px] bg-white border-slate-100`}
+              >
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-xl shadow-lg border-2 border-white">
+                  J
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.1em] text-slate-400">Project Architect</p>
+                  <p className="text-sm font-black text-slate-900">Jeevan Adhithya</p>
+                </div>
+              </motion.div>
+
+              <div className="absolute -inset-10 bg-blue-600/5 blur-[80px] -z-10 rounded-full animate-pulse" />
             </div>
-          </div>
+          </motion.div>
+
         </div>
       </div>
+
     </section>
   );
 };
-
-// Add custom CSS for slow spin animation
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes spin-slow {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-  .animate-spin-slow { animation: spin-slow 20s linear infinite; }
-`;
-document.head.appendChild(style);
 
 export default Hero;

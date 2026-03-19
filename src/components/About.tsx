@@ -1,109 +1,134 @@
-import { Code, Coffee, Heart, Zap } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
+import { Code, Coffee, Heart, Zap, Award, BookOpen, Smile, Star, Target, Compass, Sparkles, Cpu } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
 const About = () => {
   const stats = [
-    { icon: Code, label: 'Projects', value: '5+' },
-    { icon: Coffee, label: 'Years Experience', value: '2+' },
-    { icon: Heart, label: 'Technologies', value: '7+' },
-    { icon: Zap, label: 'Happy Clients', value: '10+' },
+    { icon: Award, label: 'Projects Completed', value: '15+', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/10' },
+    { icon: Star, label: 'Satisfied Clients', value: '25+', color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-50 dark:bg-purple-900/10' },
+    { icon: Cpu, label: 'AI Integrations', value: '10+', color: 'text-blue-400 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-900/10' },
+    { icon: Smile, label: 'Experience', value: '3 yrs+', color: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-50 dark:bg-emerald-900/10' },
   ];
 
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6 }
+    },
+  };
+
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl" />
-      
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="inline-block">
-                <span className="text-sm font-medium text-blue-600 tracking-wider uppercase mb-2 block">
-                  Get to know me
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
-                Passionate Developer & Creative Problem Solver
-              </h2>
-              <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
-            </div>
+    <section id="about" className="py-20 md:py-24 bg-slate-50 dark:bg-slate-950 relative overflow-hidden font-['Poppins'] transition-colors duration-500">
+      {/* Decorative background gradients */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/20 dark:bg-blue-900/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-100/20 dark:bg-purple-900/10 rounded-full blur-[100px] -z-10 -translate-x-1/2 translate-y-1/2" />
 
-            <div className="space-y-6 text-lg text-slate-700 leading-relaxed">
-              <p>
-                I'm <span className="font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Jeevan Adhithya</span>, 
-                a passionate Full-Stack Developer and AI Expert based in Coimbatore, Tamil Nadu. 
-                I specialize in creating <span className="font-semibold text-blue-600">cutting-edge digital experiences</span> that combine beautiful design 
-                with intelligent functionality and seamless user interactions.
-              </p>
-              
-              <p>
-                My expertise spans across <span className="font-semibold text-purple-600">modern web technologies</span> including React, .NET, Java, Rust, and Flutter. 
-                I believe in user-centered design and building <span className="font-semibold text-pink-600">AI-powered products</span> that truly enhance 
-                user interactions while maintaining clean, efficient, and scalable code architecture.
-              </p>
-
-              <p>
-                When I'm not coding, you can find me exploring emerging AI technologies, contributing to open source projects, 
-                or working on innovative solutions that challenge my creativity and push the boundaries of what's possible with modern web development.
-              </p>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
-              {stats.map((stat, index) => (
-                <Card key={index} className="p-6 text-center bg-white/80 backdrop-blur-sm border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:scale-105 group">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="w-6 h-6 text-white" />
+      <div className="container mx-auto px-6 max-w-7xl">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"
+        >
+          {/* Left Column: Visuals */}
+          <motion.div variants={itemVariants} className="relative group flex justify-center lg:justify-start">
+            <div className="relative w-full max-w-[480px] aspect-square rounded-[3rem] bg-white dark:bg-slate-900 p-6 md:p-8 shadow-2xl border border-slate-100 dark:border-slate-800 transition-all duration-700 hover:rotate-1">
+              <div className="w-full h-full bg-slate-950 rounded-[2rem] relative overflow-hidden shadow-2xl ring-4 ring-slate-100 dark:ring-slate-800">
+                <div className="absolute top-0 left-0 w-full p-6 font-mono text-[10px] md:text-xs text-white/40">
+                  <div className="flex space-x-2 mb-6">
+                    <div className="w-2.5 h-2.5 rounded-full bg-red-500" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
                   </div>
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                  <motion.div 
+                    animate={{ y: [0, -40, 0] }}
+                    transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+                    className="space-y-3"
+                  >
+                    <p className="text-blue-400 font-bold">interface <span className="text-white">Professional</span> {'{'}</p>
+                    <p className="pl-4">name: <span className="text-emerald-400">"Jeevan Adhithya"</span>;</p>
+                    <p className="pl-4">mission: <span className="text-emerald-400">"Building AI Futures"</span>;</p>
+                    <p className="pl-4">focus: <span className="text-emerald-400">"Web Architecture"</span>;</p>
+                    <p className="text-blue-400 font-bold">{'}'}</p>
+                  </motion.div>
+                </div>
+                
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <motion.div 
+                    animate={{ scale: [1, 1.05, 1], rotate: [0, 2, -2, 0] }}
+                    transition={{ repeat: Infinity, duration: 8 }}
+                    className="relative opacity-10 dark:opacity-20"
+                  >
+                    <Sparkles className="w-48 h-48 text-blue-500" />
+                  </motion.div>
+                </div>
+
+                <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2">
+                  {['AI Dev', 'Full-Stack', 'UI Expert'].map(tag => (
+                    <span key={tag} className="px-3 py-1 rounded-lg bg-white/10 backdrop-blur-md border border-white/20 text-[9px] text-white font-black uppercase tracking-widest">{tag}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="absolute -right-4 top-1/4 p-4 rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-100 dark:border-slate-800 transform translate-x-1/2 rotate-12 hidden md:block">
+                <Target className="w-8 h-8 text-blue-600" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Content */}
+          <motion.div variants={itemVariants} className="space-y-6 md:space-y-10">
+            <div className="space-y-4">
+              <span className="text-blue-600 dark:text-blue-400 font-black tracking-widest uppercase text-[9px] px-3 py-1 bg-blue-50 dark:bg-blue-900/40 rounded-full inline-block">
+                Personal Profile
+              </span>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-950 dark:text-white leading-[1.2]">
+                Crafting <span className="text-blue-500 underline decoration-blue-100 dark:decoration-blue-900/50 decoration-4 underline-offset-4">Digital</span> Mastery.
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-slate-600 dark:text-slate-400 text-base md:text-lg leading-relaxed font-medium">
+              <p>
+                I'm <span className="text-slate-950 dark:text-white font-black underline decoration-blue-500/20 decoration-2 underline-offset-4">Jeevan Adhithya</span>, a developer dedicated to exploring the boundaries of technology in Coimbatore.
+              </p>
+              <p>
+                I specialize in building complex, high-performance web systems where <span className="text-slate-950 dark:text-white font-black">Design meets Data</span>. I focus on creating experiences that aren't just usable—they're <span className="text-blue-600 dark:text-blue-400 font-black italic">impactful</span>.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map((stat, index) => (
+                <div
+                  key={index}
+                  className={`${stat.bg} p-6 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-sm group`}
+                >
+                  <div className={`${stat.color} mb-3`}>
+                    <stat.icon className="w-6 h-6" />
+                  </div>
+                  <div className="text-2xl font-black text-slate-950 dark:text-white mb-0.5 tracking-tight">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-slate-600 font-medium">
+                  <div className="text-[9px] text-slate-500 dark:text-slate-500 font-black uppercase tracking-widest">
                     {stat.label}
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
-          </div>
-
-          {/* Image/Visual */}
-          <div className="relative">
-            <div className="aspect-square bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-3xl p-8 shadow-2xl border border-white/20 backdrop-blur-sm">
-              <div className="w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-2xl relative overflow-hidden shadow-inner">
-                {/* Code animation visual */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white/30 text-6xl font-mono font-bold">
-                    <div className="animate-pulse">{'</>'}</div>
-                  </div>
-                </div>
-                
-                {/* Animated background pattern */}
-                <div className="absolute inset-0 opacity-10">
-                  <div className="absolute top-4 left-4 w-2 h-2 bg-white rounded-full animate-ping" />
-                  <div className="absolute top-8 right-8 w-1 h-1 bg-white rounded-full animate-ping animation-delay-1000" />
-                  <div className="absolute bottom-6 left-8 w-1.5 h-1.5 bg-white rounded-full animate-ping animation-delay-2000" />
-                </div>
-                
-                {/* Floating elements */}
-                <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/30 shadow-lg">
-                  <span className="text-white text-sm font-medium">React</span>
-                </div>
-                <div className="absolute top-16 right-4 bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/30 shadow-lg">
-                  <span className="text-white text-sm font-medium">Flutter</span>
-                </div>
-                <div className="absolute bottom-16 left-6 bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/30 shadow-lg">
-                  <span className="text-white text-sm font-medium">TypeScript</span>
-                </div>
-                <div className="absolute bottom-4 right-6 bg-white/20 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/30 shadow-lg">
-                  <span className="text-white text-sm font-medium">AI/ML</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
