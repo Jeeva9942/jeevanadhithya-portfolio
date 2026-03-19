@@ -8,13 +8,14 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import ThreeSphere from './ThreeSphere';
 
+// Vercel/Production Fix: Use proper ES imports so Vite bundles the assets correctly
+import heroImage from '../assets/media__1773835969101.jpg';
+
 const Hero = () => {
   const [init, setInit] = useState(false);
   const { theme } = useTheme();
   const heroRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
-
-  const heroImage = '/src/assets/media__1773835969101.jpg';
 
   useEffect(() => {
     setMounted(true);
@@ -62,7 +63,7 @@ const Hero = () => {
         />
       )}
 
-      <div className="container mx-auto px-6 relative z-50 max-w-7xl pt-32 pb-24">
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl pt-32 pb-24">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
           {/* Content Left */}
@@ -111,7 +112,7 @@ const Hero = () => {
               Transforming complex visions into <span className={theme === 'dark' ? 'text-white' : 'text-blue-600 font-bold'}>state-of-the-art</span> digital ecosystems. I bridge the gap between <span className="text-blue-500 font-black">advanced AI</span> and seamless human experience.
             </motion.p>
 
-            {/* Micro Stats for "Attractive Content" */}
+            {/* Micro Stats */}
             <motion.div 
                initial={{ opacity: 0, scale: 0.9 }}
                animate={{ opacity: 1, scale: 1 }}
@@ -160,6 +161,28 @@ const Hero = () => {
                 <MessageCircle className="ml-2 h-4 w-4" />
               </Button>
             </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="flex gap-10 pt-4"
+            >
+              {[
+                { icon: Github, href: "https://github.com/Jeeva9942" },
+                { icon: Linkedin, href: "https://linkedin.com/in/jeevanadhithya21" },
+              ].map((social, i) => (
+                <a 
+                  key={i}
+                  href={social.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={`transition-all hover:-translate-y-1 ${theme === 'dark' ? 'text-slate-500 hover:text-white' : 'text-slate-400 hover:text-blue-600'}`}
+                >
+                  <social.icon className="w-7 h-7" />
+                </a>
+              ))}
+            </motion.div>
           </div>
 
           {/* Hero Image Right */}
@@ -177,9 +200,6 @@ const Hero = () => {
                   src={heroImage}
                   alt="Jeevan Adhithya"
                   className="w-full h-full object-cover select-none pointer-events-none hover:scale-105 transition-transform duration-1000"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?fit=crop&w=480&h=600';
-                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent" />
               </div>
