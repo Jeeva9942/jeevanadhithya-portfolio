@@ -157,33 +157,54 @@ const Header = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className={`lg:hidden absolute top-full left-6 right-6 mt-4 p-6 rounded-[2.5rem] shadow-2xl overflow-hidden border ${
-              theme === 'dark' ? 'glass-dark' : 'glass-light'
-            }`}
-          >
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`flex items-center justify-between p-5 rounded-3xl transition-all ${
-                    theme === 'dark' 
-                      ? 'bg-white/5 hover:bg-white/10 text-white' 
-                      : 'bg-blue-50/50 hover:bg-blue-100 text-slate-900 shadow-sm'
-                  }`}
-                >
-                  <span className="text-sm font-black uppercase tracking-widest">{item.label}</span>
-                  <div className={`p-2 rounded-xl ${theme === 'dark' ? 'bg-white/10' : 'bg-blue-600 text-white'}`}>
-                    <ArrowRight className="w-4 h-4" />
-                  </div>
-                </button>
-              ))}
-            </div>
-          </motion.div>
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="lg:hidden fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-[-1]"
+              onClick={() => setIsMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              className={`lg:hidden absolute top-full left-4 right-4 mt-6 p-4 rounded-[2.5rem] shadow-2xl overflow-hidden border ${
+                theme === 'dark' ? 'glass-dark bg-slate-900/90' : 'glass-light bg-white/95'
+              }`}
+            >
+              <div className="flex flex-col space-y-2">
+                {navItems.map((item) => (
+                  <button
+                    key={item.href}
+                    onClick={() => scrollToSection(item.href)}
+                    className={`flex items-center justify-between p-4 rounded-3xl transition-all ${
+                      theme === 'dark' 
+                        ? 'hover:bg-white/10 text-white' 
+                        : 'hover:bg-blue-50 text-slate-900'
+                    }`}
+                  >
+                    <span className="text-sm font-black uppercase tracking-widest">{item.label}</span>
+                    <div className={`p-2 rounded-xl ${theme === 'dark' ? 'bg-white/10' : 'bg-blue-600 text-white'}`}>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </button>
+                ))}
+                
+                <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <Button
+                    onClick={() => scrollToSection('#contact')}
+                    className={`w-full h-14 rounded-2xl font-black text-xs uppercase tracking-widest ${
+                      theme === 'dark' ? 'bg-white text-slate-900' : 'bg-blue-600 text-white shadow-lg'
+                    }`}
+                  >
+                    Get in Touch
+                    <Zap className="ml-2 w-4 h-4 fill-current" />
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

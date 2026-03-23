@@ -137,7 +137,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="lg:col-span-7"
           >
-            <Card className="p-8 md:p-12 bg-white dark:bg-slate-900/50 backdrop-blur-3xl border border-slate-100 dark:border-slate-800 rounded-[3rem] shadow-2xl relative overflow-hidden group ring-1 ring-slate-100 dark:ring-slate-800">
+            <Card className="p-6 md:p-12 bg-white dark:bg-slate-900/50 backdrop-blur-3xl border border-slate-100 dark:border-slate-800 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl relative overflow-hidden group ring-1 ring-slate-100 dark:ring-slate-800">
               {/* Form Success Animation */}
               <AnimatePresence>
                 {submitted && (

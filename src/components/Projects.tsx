@@ -19,68 +19,68 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'NexTrade E-commerce',
-      description: 'A high-performance online store featuring real-time inventory, secure payments, and a mobile-first design.',
+      title: 'SkillSync',
+      description: 'A comprehensive platform for skill-to-skill service exchange, integrated with real-time matching and secure communication.',
       image: project1,
-      technologies: ['React', 'TypeScript', 'Node.js', 'Stripe'],
-      github: 'https://github.com/Jeeva9942',
-      live: '#',
+      technologies: ['TypeScript', 'React', 'Tailwind', 'Supabase'],
+      github: 'https://github.com/Jeeva9942/skill_sync',
+      live: 'https://skillsync-gamma-lemon.vercel.app',
       category: 'Web',
-      icon: <Globe className="w-5 h-5 text-blue-500" />
+      icon: <Layers className="w-5 h-5 text-blue-500" />
     },
     {
       id: 2,
-      title: 'SwiftBite Delivery',
-      description: 'Elegant food delivery application with multi-vendor support and real-time order tracking systems.',
+      title: 'Ayush Bridge',
+      description: 'A healthcare accessibility platform connecting practitioners and patients with a focus on holistic wellness and digital integration.',
       image: project2,
-      technologies: ['Flutter', 'Firebase', 'Dart', 'Maps'],
-      github: 'https://github.com/Jeeva9942',
-      live: '#',
-      category: 'Mobile',
-      icon: <Smartphone className="w-5 h-5 text-purple-500" />
+      technologies: ['TypeScript', 'React', 'Vite', 'Firebase'],
+      github: 'https://github.com/Jeeva9942/ayush-bridge',
+      live: 'https://ayush-bridge.vercel.app',
+      category: 'Web',
+      icon: <Globe className="w-5 h-5 text-purple-500" />
     },
     {
       id: 3,
-      title: 'CloudSync Tasks',
-      description: 'Enterprise-grade project management tool with collaborative workspaces and intelligent scheduling.',
+      title: 'Civic Lens AI',
+      description: 'AI-powered civic engagement tool that helps citizens understand local governance and participate in decision-making processes.',
       image: project3,
-      technologies: ['React', 'Redux', 'MongoDB', 'Socket.io'],
-      github: 'https://github.com/Jeeva9942',
-      live: '#',
+      technologies: ['React', 'Gemini AI', 'Node.js', 'PostgreSQL'],
+      github: 'https://github.com/Jeeva9942/civic_lens_website',
+      live: 'https://civic-lens-website.vercel.app',
       category: 'Web',
-      icon: <Layers className="w-5 h-5 text-cyan-500" />
+      icon: <Sparkles className="w-5 h-5 text-cyan-500" />
     },
     {
       id: 4,
-      title: 'Whisper Chat AI',
-      description: 'Privacy-focused messaging platform integrated with Gemini AI for smart summaries and translation.',
+      title: 'NDMA Monitoring',
+      description: 'National Disaster Management Authority training and monitoring dashboard for real-time tracking and reporting.',
       image: project4,
-      technologies: ['React', 'Gemini AI', 'Firebase', 'WebRTC'],
-      github: 'https://github.com/Jeeva9942',
-      live: '#',
+      technologies: ['TypeScript', 'React', 'Charts', 'Supabase'],
+      github: 'https://github.com/Jeeva9942/ndma-training--monitoring',
+      live: 'https://ndma-training-monitoring.vercel.app',
       category: 'Web',
-      icon: <Sparkles className="w-5 h-5 text-amber-500" />
+      icon: <Database className="w-5 h-5 text-amber-500" />
     },
     {
       id: 5,
-      title: 'LearnHub Pro',
-      description: 'Comprehensive educational platform with video streaming, automated grading, and student analytics.',
+      title: 'Sentinel Insights',
+      description: 'Advanced data visualization and security monitoring system for enterprise-level threat detection and analysis.',
       image: project5,
-      technologies: ['Next.js', 'PostgreSQL', 'Prisma', 'AWS'],
-      github: 'https://github.com/Jeeva9942',
-      live: '#',
+      technologies: ['React', 'D3.js', 'Tailwind', 'Vercel'],
+      github: 'https://github.com/Jeeva9942/sentinel-insights',
+      live: 'https://jeevanadhithya-portfolio.vercel.app', // Using portfolio as fallback for sentinel link found
       category: 'Web',
       icon: <Rocket className="w-5 h-5 text-rose-500" />
     },
     {
       id: 6,
-      title: 'VitalTrack AI',
-      description: 'AI-powered health monitoring app that synchronizes with wearables to provide tailored health insights.',
+      title: 'PriceScout Project',
+      description: 'Automated price tracking and scouting engine that helps users find the best deals across various e-commerce platforms.',
       image: project6,
-      technologies: ['Flutter', 'HealthKit', 'CoreML', 'Dart'],
-      github: 'https://github.com/Jeeva9942',
-      live: '#',
-      category: 'Mobile',
+      technologies: ['TypeScript', 'Node.js', 'Scraping', 'React'],
+      github: 'https://github.com/Jeeva9942/pricescoutproject',
+      live: 'https://pricescout-eta.vercel.app',
+      category: 'Web',
       icon: <Zap className="w-5 h-5 text-emerald-500" />
     }
   ];
