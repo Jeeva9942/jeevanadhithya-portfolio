@@ -28,7 +28,7 @@ const GithubRepos = () => {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/Jeeva9942/repos?sort=updated&per_page=6');
+        const response = await fetch('https://api.github.com/users/JeevanAdhithya/repos?sort=updated&per_page=6');
         const data = await response.json();
         if (Array.isArray(data)) {
           setRepos(data);
@@ -91,7 +91,7 @@ const GithubRepos = () => {
             viewport={{ once: true }}
           >
             <Button 
-              onClick={() => window.open('https://github.com/Jeeva9942', '_blank')}
+              onClick={() => window.open('https://github.com/JeevanAdhithya', '_blank')}
               variant="outline" 
               className="rounded-full h-12 md:h-14 px-8 border-slate-200 dark:border-slate-800 dark:bg-slate-950 font-bold group shadow-sm"
             >

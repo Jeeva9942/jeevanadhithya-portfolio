@@ -111,20 +111,25 @@ const About = () => {
 
             <div className="grid grid-cols-2 gap-4">
               {stats.map((stat, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className={`${stat.bg} p-6 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-sm group`}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className={`${stat.bg} p-6 rounded-3xl border border-white/50 dark:border-slate-800/50 shadow-sm group cursor-default transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/10`}
                 >
-                  <div className={`${stat.color} mb-3`}>
+                  <motion.div 
+                    initial={{ rotate: 0 }}
+                    whileHover={{ rotate: 15 }}
+                    className={`${stat.color} mb-3`}
+                  >
                     <stat.icon className="w-6 h-6" />
-                  </div>
+                  </motion.div>
                   <div className="text-2xl font-black text-slate-950 dark:text-white mb-0.5 tracking-tight">
                     {stat.value}
                   </div>
                   <div className="text-[9px] text-slate-500 dark:text-slate-500 font-black uppercase tracking-widest">
                     {stat.label}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>

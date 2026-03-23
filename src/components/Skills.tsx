@@ -99,19 +99,20 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-300 group ring-1 ring-slate-100 dark:ring-slate-800"
+              whileHover={{ y: -10, rotateZ: 1 }}
+              className="bg-slate-50 dark:bg-slate-900/50 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-2xl transition-all duration-500 group ring-1 ring-slate-100 dark:ring-slate-800 cursor-default"
             >
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300 group-hover:rotate-3`}>
+              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-300 group-hover:rotate-12`}>
                 <category.icon className="w-7 h-7 text-white" />
               </div>
 
               <h3 className="text-xl font-black text-slate-900 dark:text-white mb-8 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{category.title}</h3>
 
               <div className="space-y-6">
-                {category.skills.map((skill) => (
+                {category.skills.map((skill, sIdx) => (
                   <div key={skill.name}>
                     <div className="flex justify-between items-center mb-2.5">
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide">{skill.name}</span>
+                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wide group-hover:translate-x-1 transition-transform">{skill.name}</span>
                       <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded-md">{skill.level}%</span>
                     </div>
                     <div className="h-2 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden shadow-inner p-0.5">
@@ -119,9 +120,15 @@ const Skills = () => {
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
-                        transition={{ duration: 1.2, delay: 0.3 + idx * 0.1, ease: "circOut" }}
-                        className={`h-full bg-gradient-to-r ${category.color} rounded-full`}
-                      />
+                        transition={{ duration: 1.5, delay: 0.5 + idx * 0.1 + sIdx * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
+                        className={`h-full bg-gradient-to-r ${category.color} rounded-full relative overflow-hidden`}
+                      >
+                         <motion.div 
+                           animate={{ x: ['-100%', '200%'] }}
+                           transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent" 
+                         />
+                      </motion.div>
                     </div>
                   </div>
                 ))}

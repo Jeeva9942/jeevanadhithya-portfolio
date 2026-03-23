@@ -47,10 +47,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 font-['Poppins'] ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ease-in-out font-['Poppins'] ${
         isScrolled
-          ? (theme === 'dark' ? 'glass-dark py-3' : 'glass-light py-3 shadow-xl')
-          : 'py-6 bg-transparent'
+          ? (theme === 'dark' ? 'glass-dark py-3 translate-y-0 shadow-2xl' : 'glass-light py-3 shadow-2xl translate-y-0')
+          : 'py-6 bg-transparent translate-y-0'
       }`}
     >
       <div className="container mx-auto px-6">
@@ -71,8 +71,8 @@ const Header = () => {
                 transition={{ duration: 2, repeat: Infinity }}
               />
             </div>
-            <span className={`text-xl font-black tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
-              Jeevan <span className={theme === 'dark' ? 'gradient-text' : 'gradient-text-light'}>Adhithya</span>
+            <span className={`text-lg sm:text-xl font-black tracking-tighter ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
+              Jeevan <span className={`hidden xs:inline ${theme === 'dark' ? 'gradient-text' : 'gradient-text-light'}`}>Adhithya</span>
             </span>
           </motion.div>
 

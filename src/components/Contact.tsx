@@ -106,14 +106,14 @@ const Contact = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ x: 10, scale: 1.02 }}
-                  className="flex items-center space-x-6 p-4 rounded-[2rem] hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-300 group ring-1 ring-transparent hover:ring-slate-100 dark:hover:ring-slate-800"
+                  className="flex items-center space-x-4 sm:space-x-6 p-4 rounded-[2rem] hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-all duration-300 group ring-1 ring-transparent hover:ring-slate-100 dark:hover:ring-slate-800"
                 >
-                  <div className={`w-14 h-14 ${info.color} rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-xl transition-all duration-300`}>
-                    <info.icon className="w-6 h-6" />
+                  <div className={`w-12 h-12 sm:w-14 sm:h-14 ${info.color} rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-xl transition-all duration-300 flex-shrink-0`}>
+                    <info.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">{info.label}</p>
-                    <p className="text-lg font-black text-slate-900 dark:text-white transition-colors">{info.value}</p>
+                    <p className="text-base sm:text-lg font-black text-slate-900 dark:text-white transition-colors break-all sm:break-normal">{info.value}</p>
                   </div>
                 </motion.a>
               ))}

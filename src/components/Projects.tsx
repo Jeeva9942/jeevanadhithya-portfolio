@@ -23,7 +23,7 @@ const Projects = () => {
       description: 'A comprehensive platform for skill-to-skill service exchange, integrated with real-time matching and secure communication.',
       image: project1,
       technologies: ['TypeScript', 'React', 'Tailwind', 'Supabase'],
-      github: 'https://github.com/Jeeva9942/skill_sync',
+      github: 'https://github.com/JeevanAdhithya/skill_sync',
       live: 'https://skillsync-gamma-lemon.vercel.app',
       category: 'Web',
       icon: <Layers className="w-5 h-5 text-blue-500" />
@@ -34,7 +34,7 @@ const Projects = () => {
       description: 'A healthcare accessibility platform connecting practitioners and patients with a focus on holistic wellness and digital integration.',
       image: project2,
       technologies: ['TypeScript', 'React', 'Vite', 'Firebase'],
-      github: 'https://github.com/Jeeva9942/ayush-bridge',
+      github: 'https://github.com/JeevanAdhithya/ayush-bridge',
       live: 'https://ayush-bridge.vercel.app',
       category: 'Web',
       icon: <Globe className="w-5 h-5 text-purple-500" />
@@ -45,7 +45,7 @@ const Projects = () => {
       description: 'AI-powered civic engagement tool that helps citizens understand local governance and participate in decision-making processes.',
       image: project3,
       technologies: ['React', 'Gemini AI', 'Node.js', 'PostgreSQL'],
-      github: 'https://github.com/Jeeva9942/civic_lens_website',
+      github: 'https://github.com/JeevanAdhithya/civic_lens_website',
       live: 'https://civic-lens-website.vercel.app',
       category: 'Web',
       icon: <Sparkles className="w-5 h-5 text-cyan-500" />
@@ -56,7 +56,7 @@ const Projects = () => {
       description: 'National Disaster Management Authority training and monitoring dashboard for real-time tracking and reporting.',
       image: project4,
       technologies: ['TypeScript', 'React', 'Charts', 'Supabase'],
-      github: 'https://github.com/Jeeva9942/ndma-training--monitoring',
+      github: 'https://github.com/JeevanAdhithya/ndma-training--monitoring',
       live: 'https://ndma-training-monitoring.vercel.app',
       category: 'Web',
       icon: <Database className="w-5 h-5 text-amber-500" />
@@ -67,7 +67,7 @@ const Projects = () => {
       description: 'Advanced data visualization and security monitoring system for enterprise-level threat detection and analysis.',
       image: project5,
       technologies: ['React', 'D3.js', 'Tailwind', 'Vercel'],
-      github: 'https://github.com/Jeeva9942/sentinel-insights',
+      github: 'https://github.com/JeevanAdhithya/sentinel-insights',
       live: 'https://jeevanadhithya-portfolio.vercel.app', // Using portfolio as fallback for sentinel link found
       category: 'Web',
       icon: <Rocket className="w-5 h-5 text-rose-500" />
@@ -78,7 +78,7 @@ const Projects = () => {
       description: 'Automated price tracking and scouting engine that helps users find the best deals across various e-commerce platforms.',
       image: project6,
       technologies: ['TypeScript', 'Node.js', 'Scraping', 'React'],
-      github: 'https://github.com/Jeeva9942/pricescoutproject',
+      github: 'https://github.com/JeevanAdhithya/pricescoutproject',
       live: 'https://pricescout-eta.vercel.app',
       category: 'Web',
       icon: <Zap className="w-5 h-5 text-emerald-500" />
@@ -147,53 +147,58 @@ const Projects = () => {
               <motion.div
                 layout
                 key={project.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 50, rotateX: -10 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -10 }}
+                className="h-full"
               >
-                <Card className="group relative overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full ring-1 ring-slate-100 dark:ring-slate-800">
-                  {/* Project Image Area */}
-                  <div className="relative aspect-[16/10] overflow-hidden m-3 rounded-[1.8rem] bg-slate-100 dark:bg-slate-800">
-                    <img
+                <Card className="group relative h-full overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col ring-1 ring-slate-100 dark:ring-slate-800 cursor-default">
+                  {/* Image with Parallax-like effect */}
+                  <div className="relative aspect-[16/10] overflow-hidden m-4 rounded-[1.8rem] bg-slate-100 dark:bg-slate-800">
+                    <motion.img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      whileHover={{ scale: 1.1, rotate: 1 }}
+                      transition={{ duration: 0.6 }}
+                      className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
-                      <div className="flex gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <Button size="sm" asChild className="rounded-xl flex-1 bg-white text-slate-900 hover:bg-slate-100 font-bold border-none">
-                          <a href={project.github} target="_blank"><Github className="w-4 h-4 mr-2" /> Code</a>
+                      <div className="flex gap-3 translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                        <Button size="sm" asChild className="rounded-xl flex-1 bg-white text-slate-900 hover:bg-slate-100 font-black border-none shadow-xl">
+                          <a href={project.github} target="_blank"><Github className="w-4 h-4 mr-2" /> Source</a>
                         </Button>
-                        <Button size="sm" asChild className="rounded-xl flex-1 bg-blue-600 text-white hover:bg-blue-700 font-bold border-none">
-                          <a href={project.live} target="_blank"><ExternalLink className="w-4 h-4 mr-2" /> Live</a>
+                        <Button size="sm" asChild className="rounded-xl flex-1 bg-blue-600 text-white hover:bg-blue-700 font-black border-none shadow-xl shadow-blue-500/20">
+                          <a href={project.live} target="_blank"><ExternalLink className="w-4 h-4 mr-2" /> Launch</a>
                         </Button>
                       </div>
                     </div>
                     
-                    {/* Floating Tech Tag */}
-                    <div className="absolute top-4 right-4 py-1.5 px-4 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-white/20 dark:border-slate-700/50 text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white shadow-xl">
+                    {/* Glowing Tech Tag */}
+                    <div className="absolute top-4 right-4 py-1.5 px-4 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-white/20 dark:border-slate-700/50 text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white shadow-xl group-hover:bg-blue-600 group-hover:text-white transition-all cursor-default">
                       {project.technologies[0]}
                     </div>
                   </div>
 
                   {/* Content Area */}
                   <div className="p-8 flex flex-col flex-1">
-                    <div className="flex items-center space-x-3 text-blue-600 dark:text-blue-400 mb-4 bg-blue-50/50 dark:bg-blue-900/20 w-fit px-4 py-2 rounded-2xl">
+                    <div className="flex items-center space-x-3 text-blue-600 dark:text-blue-400 mb-6 bg-blue-50/50 dark:bg-blue-900/20 w-fit px-4 py-2 rounded-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
                       {project.icon}
                       <span className="text-[10px] font-black uppercase tracking-widest">{project.category} Suite</span>
                     </div>
                     
-                    <h3 className="text-xl font-black text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-3 group-hover:translate-x-1 transition-transform duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1 font-medium">
+                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-1 font-medium group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
                       {project.description}
                     </p>
 
                     <div className="flex flex-wrap gap-2 pt-6 border-t border-slate-50 dark:border-slate-800">
                       {project.technologies.map((tech) => (
-                        <Badge key={tech} className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-none px-3 py-1 font-bold text-[9px] uppercase tracking-wider">
+                        <Badge key={tech} className="bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border-none px-3 py-1 font-bold text-[9px] uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-colors cursor-default">
                           {tech}
                         </Badge>
                       ))}
@@ -216,7 +221,7 @@ const Projects = () => {
           <div className="inline-flex flex-col items-center">
             <div className="mb-6 h-[1px] w-24 bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent" />
             <a 
-              href="https://github.com/Jeeva9942" 
+              href="https://github.com/JeevanAdhithya" 
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center space-x-4 p-5 pr-10 rounded-[2.5rem] bg-slate-950 dark:bg-blue-600 text-white hover:bg-slate-900 dark:hover:bg-blue-700 transition-all duration-300 shadow-2xl relative overflow-hidden"

@@ -253,11 +253,11 @@ const Chatbot = () => {
             whileHover={{ scale: 1.05, rotate: 5 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="w-16 h-16 bg-gradient-to-tr from-blue-600 to-indigo-700 rounded-3xl flex items-center justify-center text-white shadow-[0_15px_35px_rgba(37,99,235,0.4)] relative group overflow-hidden border border-white/20"
+            className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-tr from-blue-600 to-indigo-700 rounded-2xl sm:rounded-3xl flex items-center justify-center text-white shadow-[0_15px_35px_rgba(37,99,235,0.4)] relative group overflow-hidden border border-white/20"
           >
             <div className="absolute inset-0 bg-white/20 scale-0 group-hover:scale-150 transition-transform duration-1000 rounded-full" />
-            <MessageSquare className="w-8 h-8 relative z-10" />
-            <div className="absolute top-3 right-3 w-4 h-4 bg-green-400 rounded-full border-[3px] border-white dark:border-slate-900 z-20 shadow-[0_0_12px_rgba(74,222,128,1)]" />
+            <MessageSquare className="w-6 h-6 sm:w-8 sm:h-8 relative z-10" />
+            <div className="absolute top-2 right-2 sm:top-3 sm:right-3 w-3 h-3 sm:w-4 sm:h-4 bg-green-400 rounded-full border-[2px] sm:border-[3px] border-white dark:border-slate-900 z-20 shadow-[0_0_12px_rgba(74,222,128,1)]" />
           </motion.button>
         )}
       </AnimatePresence>
